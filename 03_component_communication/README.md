@@ -35,7 +35,7 @@
         }
     }
     ```
--   Open `src/app/child/child.component.html` and replace current html content with the following:
+-   Open `src/app/child/child.component.html` and replace current html content with the following. Mention that we will cover Templates in more depth in next Topic:
     ```
     <h3>Child Component</h3>
     <p>{{ message }}</p>
