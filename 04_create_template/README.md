@@ -9,12 +9,13 @@
 -   Install dependencies by running the following command:
     ```
     npm install
+    ```
 
 ### Create a new Component and  Template
 
 -   Create a new `CustomInputComponent` component using CLI:
     ```
-    npx -p @angular/cli ng generate component my-component
+    npx -p @angular/cli ng generate component custom-input
     ```
 
 ### Inject CustomInput Component into AppComponent

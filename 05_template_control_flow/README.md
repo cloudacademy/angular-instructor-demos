@@ -9,12 +9,13 @@
 -   Install dependencies by running the following command:
     ```
     npm install
+    ```
 
 ### Create a new Component and  Template
 
 -   Create a new `CustomInputComponent` component using CLI:
     ```
-    npx -p @angular/cli ng generate component my-component
+    npx -p @angular/cli ng generate component custom-input
     ```
 
 ### Inject CustomInput Component into AppComponent
@@ -37,16 +38,40 @@
     ```
 
 ### Capture User Input
--   Open `src/app/custom-input/custom-input.component.html` and add replace current HTML with the following:
+-   Open `src/app/custom-input/custom-input.component.html` and replace current HTML with the following:
     ```
     <input type="text" (input)="onInputChange($event)">
     ```
 
 -   Open `src/app/custom-input/custom-input.component.ts` and add the following code inside CustomInputComponent class:
     ```
-    onInputChange(event: any) {
-        this.value = event.target.value;
+    import { Component } from '@angular/core';
+
+    @Component({
+        selector: 'app-custom-input',
+        standalone: true,
+        imports: [],
+        templateUrl: './custom-input.component.html',
+        styleUrl: './custom-input.component.css'
+    })
+    export class CustomInputComponent {
+        value: string = ''
+
+        onInputChange(event: any) {
+            this.value = event.target.value;
+        }
     }
     ```
 
+### Add @if built-in control flow block
 
+-   Open `src/app/custom-input/custom-input.component.html` and add the following code just below the `<input>` element:
+    ```
+    <div>
+        @if (!value || value.length < 5) {
+            Type at least 5 characters
+        } @else {
+            Perfect :)
+        }
+    </div>
+    ```
