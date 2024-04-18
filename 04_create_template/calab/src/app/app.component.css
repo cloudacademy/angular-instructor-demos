@@ -19,6 +19,7 @@
 
 .divider {
     height: 1px;
+    margin: 20px;
     background: purple;
     margin-inline: 0.5rem;
   }
