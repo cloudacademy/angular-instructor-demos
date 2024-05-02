@@ -1,0 +1,92 @@
+[
+    {
+        "course_id": 1,
+        "course_name": "Introduction to Data Science",
+        "course_description": "Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.\n\nCras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+        "course_duration": 7
+    },
+    {
+        "course_id": 2,
+        "course_name": "Advanced Machine Learning Techniques",
+        "course_description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.",
+        "course_duration": 7
+    },
+    {
+        "course_id": 3,
+        "course_name": "Web Development Fundamentals",
+        "course_description": "Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
+        "course_duration": 2
+    },
+    {
+        "course_id": 4,
+        "course_name": "Financial Analysis and Modeling",
+        "course_description": "Phasellus in felis. Donec semper sapien a libero. Nam dui.\n\nProin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.",
+        "course_duration": 12
+    },
+    {
+        "course_id": 5,
+        "course_name": "Digital Marketing Strategies",
+        "course_description": "Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.\n\nMorbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.\n\nFusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.",
+        "course_duration": 9
+    },
+    {
+        "course_id": 6,
+        "course_name": "Creative Writing Workshop",
+        "course_description": "Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.\n\nSed ante. Vivamus tortor. Duis mattis egestas metus.",
+        "course_duration": 12
+    },
+    {
+        "course_id": 7,
+        "course_name": "Introduction to Psychology",
+        "course_description": "Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.",
+        "course_duration": 1
+    },
+    {
+        "course_id": 8,
+        "course_name": "Cybersecurity Fundamentals",
+        "course_description": "Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.\n\nMorbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.",
+        "course_duration": 3
+    },
+    {
+        "course_id": 9,
+        "course_name": "Graphic Design Essentials",
+        "course_description": "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\n\nEtiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.\n\nPraesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.",
+        "course_duration": 1
+    },
+    {
+        "course_id": 10,
+        "course_name": "Sustainable Energy Technologies",
+        "course_description": "Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.\n\nVestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.\n\nIn congue. Etiam justo. Etiam pretium iaculis justo.",
+        "course_duration": 12
+    },
+    {
+        "course_id": 11,
+        "course_name": "Business Analytics and Decision Making",
+        "course_description": "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\n\nEtiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.\n\nPraesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.",
+        "course_duration": 1
+    },
+    {
+        "course_id": 12,
+        "course_name": "Introduction to Robotics",
+        "course_description": "In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.\n\nMaecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.",
+        "course_duration": 12
+    },
+    {
+        "course_id": 13,
+        "course_name": "Photography Masterclass",
+        "course_description": "Phasellus in felis. Donec semper sapien a libero. Nam dui.\n\nProin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.\n\nInteger ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.",
+        "course_duration": 7
+    },
+    {
+        "course_id": 14,
+        "course_name": "Entrepreneurship and Innovation",
+        "course_description": "Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.",
+        "course_duration": 7
+    },
+    {
+        "course_id": 15,
+        "course_name": "Humanitarian Aid and Development",
+        "course_description": "Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.\n\nCum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\n\nEtiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.",
+        "course_duration": 11
+    }
+]
