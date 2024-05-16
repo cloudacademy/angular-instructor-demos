@@ -11,7 +11,7 @@
     npm install
     ```
 
-## Create a Setup Application for Routing
+## Setup Application for Routing
 
 ### Create Two New Components
 
@@ -24,7 +24,7 @@
     npx -p @angular/cli ng generate component components/second
     ```
 
-## Define Your and Use Routes
+## Define and Use Your Routes
 
 ### Define Routes In Routes Array
 
