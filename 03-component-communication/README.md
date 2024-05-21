@@ -1,23 +1,32 @@
 # Communication Between Angular Components
 
-### Install Dependencies
+## 1. Setup Project
 
--   Change directory to `calab`:
-    ```
+### 1.1 Install Dependencies
+
+1. Change directory to `calab`:
+
+    ```.sh
     cd calab
     ```
--   Install dependencies by running the following command:
-    ```
+2. Install dependencies by running the following command:
+
+    ```.sh
     npm install
-
-### Create Child Component
-
--   Create a new `Child` component using CLI:
     ```
+
+## 2. Create Child and Parent Components
+
+### 2.1 Create Child Component
+
+1. Create a new `Child` component using CLI:
+
+    ```.sh
     npx -p @angular/cli ng generate component child
     ```
--   Open `src/app/child/child.component.ts` and add the following code:
-    ```
+2. Open `src/app/child/child.component.ts` and add the following code:
+
+    ```.js
     import { Component, EventEmitter, Input, Output } from '@angular/core';
     @Component({
         selector: 'app-child',
@@ -35,22 +44,25 @@
         }
     }
     ```
--   Open `src/app/child/child.component.html` and replace current html content with the following. Mention that we will cover Templates in more depth in next Topic:
-    ```
+3. Open `src/app/child/child.component.html` and replace current html content with the following. Mention that we will cover Templates in more depth in next Topic:
+
+    ```.html
     <h3>Child Component</h3>
     <p>{{ message }}</p>
     <button (click)="sendMessage()">Send Message to Parent</button> 
     ```
 
 
-### Create Prent Component
+### 2.2 Create Prent Component
 
--   Create a new `Parent` component using CLI:
-    ```
+1. Create a new `Parent` component using CLI:
+
+    ```.sh
     npx -p @angular/cli ng generate component parent
     ```
-- Open `src/app/parent/paret.component.ts` and add the following code:
-    ```
+2. Open `src/app/parent/paret.component.ts` and add the following code:
+
+    ```.js
     import { Component } from '@angular/core';
     import { ChildComponent } from '../child/child.component';
 
@@ -70,29 +82,34 @@
         }
     }
     ```
--   Open `src/app/parent/parent.component.html` and replace current html content with the following:
-    ```
+3. Open `src/app/parent/parent.component.html` and replace current html content with the following:
+
+    ```.html
     <h2>Parent Component</h2>
     <app-child-component [message]="parentMessage" (messageEvent)="receiveMessage($event)"></app-child-component>
     <p>{{ childMessage }}</p>
     ```
 
 
-### Inject Parent component into AppComponent
+### 2.3 Inject Parent component into AppComponent
 
-- Inside `src/app/app.component.ts` update `imports` to include `ParentComponent`:
-    ```
+1. Inside `src/app/app.component.ts` update `imports` to include `ParentComponent`:
+
+    ```.js
     imports: [RouterOutlet, ParentComponent],
     ```
 
-- Open `src/app/app.component.html` template and add the following element after the `<div class="divider"...`
-    ```
+2. Open `src/app/app.component.html` template and add the following element after the `<div class="divider"...`
+
+    ```.html
     <app-parent></app-parent>
     ```
 
-### Start The Application
+### 2.4 Start The Application
 
--   Start Angular Development Server:
-    ```
+1. Start Angular Development Server if not yet started:
+
+    ```.bash
     npx -p @angular/cli ng serve  --host 0.0.0.0 
     ```
+2. Otherwise refresh the browser tab to see updated view.
