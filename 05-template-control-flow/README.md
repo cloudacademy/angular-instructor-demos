@@ -1,50 +1,66 @@
 # Angular Template Control Flow Demo
 
-### Install Dependencies
+## 1. Setup Project
 
--   Change directory to `calab`:
-    ```
+### 1.1 Install Dependencies
+
+1. Change directory to `calab`:
+
+    ```.sh
     cd calab
     ```
--   Install dependencies by running the following command:
-    ```
+2. Install dependencies by running the following command:
+
+    ```.sh
     npm install
     ```
 
-### Create a new Component and  Template
+## 2. Create Component and Template
 
--   Create a new `CustomInputComponent` component using CLI:
-    ```
+### 2.1 Create a new Component and  Template
+
+1. Create a new `CustomInputComponent` component using CLI:
+
+    ```.sh
     npx -p @angular/cli ng generate component custom-input
     ```
 
-### Inject CustomInput Component into AppComponent
+### 2.2 Inject CustomInput Component into AppComponent
 
-- Inside `src/app/app.component.ts` update `imports` to include `CustomInputComponent`:
-    ```
+1. Inside `src/app/app.component.ts` update `imports` to include `CustomInputComponent`:
+
+    ```.js
     imports: [RouterOutlet, CustomInputComponent],
     ```
 
-- Open `src/app/app.component.html` template and add the following element after the `<div class="divider"...`
-    ```
+2. Open `src/app/app.component.html` template and add the following element after the `<div class="divider"...`
+
+    ```.html
     <app-custom-input></app-custom-input>
     ```
 
-### Start The Application
+### 2.3 Start The Application
 
--   Start Angular Development Server:
-    ```
+1. Start Angular Development Server if not yet started:
+
+    ```.bash
     npx -p @angular/cli ng serve  --host 0.0.0.0 
     ```
+2. Otherwise refresh the browser tab to see updated view.
 
-### Capture User Input
--   Open `src/app/custom-input/custom-input.component.html` and replace current HTML with the following:
-    ```
+
+## 3. Capture User Input and Update View Based On Users Value
+
+### 3.1 Capture User Input
+1. Open `src/app/custom-input/custom-input.component.html` and replace current HTML with the following:
+
+    ```.html
     <input type="text" (input)="onInputChange($event)">
     ```
 
--   Open `src/app/custom-input/custom-input.component.ts` and add the following code inside CustomInputComponent class:
-    ```
+2. Open `src/app/custom-input/custom-input.component.ts` and add the following code inside CustomInputComponent class:
+
+    ```.js
     import { Component } from '@angular/core';
 
     @Component({
@@ -63,10 +79,11 @@
     }
     ```
 
-### Add @if built-in control flow block
+### 3.2 Add @if built-in control flow block
 
--   Open `src/app/custom-input/custom-input.component.html` and add the following code just below the `<input>` element:
-    ```
+1. Open `src/app/custom-input/custom-input.component.html` and add the following code just below the `<input>` element:
+
+    ```.html
     <div>
         @if (!value || value.length < 5) {
             Type at least 5 characters
@@ -75,3 +92,12 @@
         }
     </div>
     ```
+
+### 3.3 Start The Application
+
+1. Start Angular Development Server if not yet started:
+
+    ```.bash
+    npx -p @angular/cli ng serve  --host 0.0.0.0 
+    ```
+2. Otherwise refresh the browser tab to see updated view.

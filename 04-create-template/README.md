@@ -1,94 +1,111 @@
 # Ceate Angular Template
 
+## 1. Setup Project
+
 ### Install Dependencies
 
--   Change directory to `calab`:
-    ```
+1. Change directory to `calab`:
+
+    ```.sh
     cd calab
     ```
--   Install dependencies by running the following command:
-    ```
+2. Install dependencies by running the following command:
+
+    ```.sh
     npm install
     ```
 
-### Create a new Component and  Template
+## 2. Create Component and Temlate
 
--   Create a new `CustomInputComponent` component using CLI:
-    ```
+### 2.1 Create a new Component and a Template
+
+1. Create a new `CustomInputComponent` component using CLI:
+
+    ```.sh
     npx -p @angular/cli ng generate component custom-input
     ```
 
-### Inject CustomInput Component into AppComponent
+### 2.2 Inject CustomInput Component into AppComponent
 
-- Inside `src/app/app.component.ts` update `imports` to include `CustomInputComponent`:
-    ```
+1. Inside `src/app/app.component.ts` update `imports` to include `CustomInputComponent`:
+
+    ```.js
     imports: [RouterOutlet, CustomInputComponent],
     ```
 
-- Open `src/app/app.component.html` template and add the following element after the `<div class="divider"...`
-    ```
+2. Open `src/app/app.component.html` template and add the following element after the `<div class="divider"...`
+
+    ```.html
     <app-custom-input></app-custom-input>
     ```
 
-### Start The Application
+### 2.3 Start The Application
 
--   Start Angular Development Server:
-    ```
+1. Start Angular Development Server if not yet started:
+
+    ```.bash
     npx -p @angular/cli ng serve  --host 0.0.0.0 
     ```
+2. Otherwise refresh the browser tab to see updated view.
 
-### Text Interpolation Example
+## 3. Data Binding Examples
 
--   Open `src/app/custom-input/custom-input.component.html` and replace current html content with the following:
-    ```
+### 3.1 Text Interpolation Example
+
+1. Open `src/app/custom-input/custom-input.component.html` and replace current html content with the following:
+
+    ```.html
     <p>{{value}}</p>
     ```
 
--   Open `src/app/custom-input/custom-input.component.ts` and add the following code:
-    ```
+2. Open `src/app/custom-input/custom-input.component.ts` and add the following code:
+
+    ```.js
     export class CustomInputComponent {
         value: string = "My Default Value"
     }
     ```
 
-    Open your Angular application in Browser and see the result.
+    > _Open your Angular application in Browser and see the result._
 
-### Event Binding Example
--   Open `src/app/custom-input/custom-input.component.html` and add the following line just above `<p>`:
-    ```
+### 3.2 Event Binding Example
+1. Open `src/app/custom-input/custom-input.component.html` and add the following line just above `<p>`:
+
+    ```.html
     <input type="text" (input)="onInputChange($event)">
-
     ```
 
--   Open `src/app/custom-input/custom-input.component.ts` and add the following code inside CustomInputComponent class:
-    ```
+2. Open `src/app/custom-input/custom-input.component.ts` and add the following code inside CustomInputComponent class:
+
+    ```.js
     onInputChange(event: any) {
         this.value = event.target.value;
     }
     ```
     
-    Open your Angular application in Browser and see the result.
-    Enter any value into the TextInput box and see how value chages on a screen.
+    > _Open your Angular application in Browser and see the result.
+    Enter any value into the TextInput box and see how value chages on a screen._
 
 
-### Property Binding Example
--   Open `src/app/custom-input/custom-input.component.html` and update current HTML:
+### 3.3 Property Binding Example
+1. Open `src/app/custom-input/custom-input.component.html` and update current HTML:
     - add value property to `<input>` element:
-        ```
+
+        ```.html
         <input type="text" [value]="value" (input)="onInputChange($event)">
         ```
         
-    Open your Angular application in Browser (refresh page if needed) and see "My Default Value" being pre populated in  TextInput box.
+    > _Open your Angular application in Browser (refresh page if needed) and see "My Default Value" being pre populated in  TextInput box._
 
 
-### Two Way Binding Example
+### 3.4 Two Way Binding Example
 
--   Open `src/app/custom-input/custom-input.component.html` and remove current `<p>{{value}}</p>` from Template.:
+1. Open `src/app/custom-input/custom-input.component.html` and remove current `<p>{{value}}</p>` from Template.:
 
--   Open `src/app/custom-input/custom-input.component.ts` and update to the following code:
-    ```
+2. Open `src/app/custom-input/custom-input.component.ts` and update to the following code:
+
+    ```.js
     import { Component, EventEmitter, Input, Output } from '@angular/core';
-
         @Component({
             selector: 'app-custom-input',
             standalone: true,
@@ -106,16 +123,28 @@
             }
         }
     ```
--   Open `src/app/app.component.ts` and just below title variable add the following:
-    ```
+3. Open `src/app/app.component.ts` and just below title variable add the following:
+
+    ```.js
     inputValue: string = 'initial value';
     ```
 
-- Open `src/app/app.component.html` template and update/add the following element below the `<div class="divider"...`
-    ```
+4. Open `src/app/app.component.html` template and update/add the following element below the `<div class="divider"...`
+
+    ```.html
     <app-custom-input [(value)]="inputValue"></app-custom-input>
     <p>Input value: {{ inputValue }}</p>
     ```
 
-    Open your Angular application in Browser (refresh page if needed) and see how default value is set initialy, but later updated when 
-    new value is typed into TextInput box.
+    > _Open your Angular application in Browser (refresh page if needed) and see how default value is set initialy, but later updated when 
+    new value is typed into TextInput box._
+
+
+### 3.5 Start The Application
+
+1. Start Angular Development Server if not yet started:
+
+    ```.bash
+    npx -p @angular/cli ng serve  --host 0.0.0.0 
+    ```
+2. Otherwise refresh the browser tab to see updated view.
