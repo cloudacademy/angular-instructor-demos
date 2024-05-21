@@ -1,4 +1,6 @@
-# 1. Install CLI tools localy and create Angular application
+# Install CLI tools localy and create Angular application
+
+## 1. Setup Project
 
 ### 1.1 Create Workspace called "calab" with local CLI tools instance.
 

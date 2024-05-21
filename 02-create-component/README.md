@@ -1,38 +1,52 @@
 # Create a New Angular Component
 
-### Install Dependencies
+## 1. Setup Project
 
--   Change directory to `calab`:
-    ```
+### 1.1 Install Dependencies
+
+1. Change directory to `calab`:
+
+    ```.sh
     cd calab
     ```
--   Install dependencies by running the following command:
-    ```
+2. Install dependencies by running the following command:
+
+    ```.sh
     npm install
     ```
 
-### Create Angular Component
--   Create a new component using CLI:
-    ```
+## 2. Create Component
+
+### 2.1 Create Angular Component
+1. Create a new component using CLI:
+
+    ```.sh
     npx -p @angular/cli ng generate component my-component
     ```
 
-- Import `MyComponentComponent` into `src/app/app.component.ts`:
-    ```
+2. Import `MyComponentComponent` into `src/app/app.component.ts`:
+
+    ```.js
     import { MyComponentComponent } from './my-component/my-component.component';
     ```
 
-- Inside `src/app/app.component.ts` update `imports` to include `MyComponentComponent`:
-    ```
+3. Inside `src/app/app.component.ts` update `imports` to include `MyComponentComponent`:
+
+    ```.js
     imports: [RouterOutlet, MyComponentComponent],
     ```
 
-- Open `src/app/app.component.html` template and add the following element after the `<div class="divider"...`
-    ```
+4. Open `src/app/app.component.html` template and add the following element after the `<div class="divider"...`
+
+    ```.html
     <app-my-component></app-my-component>
     ```
 
--   Start Angular Development Server:
-    ```
+### 2.2 Start The Application
+
+1. Start Angular Development Server if not yet started:
+
+    ```.bash
     npx -p @angular/cli ng serve  --host 0.0.0.0 
     ```
+2. Otherwise refresh the browser tab to see updated view.
