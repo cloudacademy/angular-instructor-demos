@@ -1,52 +1,61 @@
 # Angular Router Demo
 
-### Install Dependencies
+## 1. Setup Project
 
--   Change directory to `calab`:
-    ```
+### 1.1 Install Dependencies
+
+1. Change directory to `calab`:
+
+    ```.sh
     cd calab
     ```
--   Install dependencies by running the following command:
-    ```
+2. Install dependencies by running the following command:
+
+    ```.sh
     npm install
     ```
 
-## Setup Application for Routing
+## 2. Setup Application for Routing
 
-### Create Two New Components
+### 2.1 Create Two New Components
 
--   Create a new component using CLI and name it `First`:
-    ```
+1. Create a new component using CLI and name it `First`:
+
+    ```.sh
     npx -p @angular/cli ng generate component components/first
     ```
--   Create another component using CLI and name it `Second`:
-    ```
+2. Create another component using CLI and name it `Second`:
+
+    ```.sh
     npx -p @angular/cli ng generate component components/second
     ```
 
-## Define and Use Your Routes
+## 3. Define and Use Your Routes
 
-### Define Routes In Routes Array
+### 3.1 Define Routes In Routes Array
 
-- Open `src/app/app.routes.ts` file and do the following:
+1. Open `src/app/app.routes.ts` file and do the following:
     - Import previously created components.
-        ```
+
+        ```.js
         import {FirstComponent} from './components/first/first.component';
         import {SecondComponent} from './components/second/second.component';
         ```
     - Define each route as an JavaScript object and add it to `Routes` array:
-        ```
+
+        ```.js
         { path: 'first-component', component: FirstComponent},
         { path: 'second-component', component: SecondComponent}
         ```
 
-### Use Defined Routs In an Application
+### 3.2 Use Defined Routs In an Application
 
-- Open `src/app/app.component.ts` file and do the following:
+1. Open `src/app/app.component.ts` file and do the following:
     - Import `RouterLink` from the `@angular/router`.
-- Open `src/app/app.component.html` file and do the following:
+2. Open `src/app/app.component.html` file and do the following:
     - Just below `<div class="divider"...` Use a routerLink attributes to add routes to selected elements:
-        ```
+
+        ```.html
          <nav>
             <ul>
                 <li><a routerLink="/first-component/MyName" >First Component</a></li>
@@ -55,30 +64,33 @@
         </nav>
         ```
 
-### Start The Application
+### 3.3 Review Changes
 
--   Start Angular Development Server if not yet started:
-    ```
+1. Start Angular Development Server if not yet started:
+
+    ```.bash
     npx -p @angular/cli ng serve  --host 0.0.0.0 
     ```
-- Otherwise refresh the browser tab to see updated view.
+    > _Otherwise refresh the browser tab to see updated view._
 
 
-## Bind Route Info to Component Inputs
+## 4. Bind Route Info to Component Inputs
 
-### Enable Route Processing
+### 4.1 Enable Route Processing
 
-- Open `src/app/app.config.ts` file and do the following:
+1. Open `src/app/app.config.ts` file and do the following:
     - Import `withComponentInputBinding` from the `@angular/router`.
     - update `provideRouter` method with the following:
-        ```
+
+        ```.js
           providers: [provideRouter(routes, withComponentInputBinding())]
         ```
 
-### Update the component to have an Input matching the name of the parameter
+### 4.2 Update the component to have an Input matching the name of the parameter
 
--   Open `src/app/components/first/first.component.ts` and add the following code:
-    ```
+1. Open `src/app/components/first/first.component.ts` and add the following code:
+
+    ```.js
     @Component({
         selector: 'app-first',
         standalone: true,
@@ -91,76 +103,86 @@
     }
     ```
 
-### Update path in router array to include path parameter or query string.
+### 4.3 Update path in router array to include path parameter or query string.
 
-- Open `src/app/app.routes.ts` file and do the following:
+1. Open `src/app/app.routes.ts` file and do the following:
     - Update `first-component` path with the filowing:
-        ```
+
+        ```.js
         { path: 'first-component/:name', component: FirstComponent},
         { path: 'second-component', component: SecondComponent}
         ```
-- Open `src/app/app.component.html` file and do the following:
-    - Update a First Component's routerLink attribute to include name path parameter.:
-        ```
+2. Open `src/app/app.component.html` file and do the following:
+    - Update a First Component's routerLink attribute to include name path parameter:
+
+        ```.js
         <li><a routerLink="/first-component/John" >First Component</a></li>
         ```
 
-### Start The Application
+### 4.3 Review Changes
 
--   Start Angular Development Server if not yet started:
-    ```
+1. Start Angular Development Server if not yet started:
+
+    ```.bash
     npx -p @angular/cli ng serve  --host 0.0.0.0 
     ```
-- Otherwise refresh the browser tab to see updated view.
+    > _Otherwise refresh the browser tab to see updated view._
 
-## Nesting Routes
+## 5. Nesting Routes
 
-### Create child components
+### 5.1 Create child components
 
-- Create a new component using CLI and name it `FirstChild`:
-    ```
+1. Create a new component using CLI and name it `FirstChild`:
+
+    ```.sh
     npx -p @angular/cli ng generate component components/first-child
     ```
-- Add Styling to first child component:
+2. Add Styling to first child component:
     - Open `src/app/components/first-child/first-child.component.ts` and add replace current code with the following:
-        ```
+
+        ```.html
         <div class="container">
             <p>first-child works!</p>
         </div>
         ```
     - Open `src/app/components/first-child/first-child.component.html` and add the following css:
-        ```
+
+        ```.css
         .container {
             background-color: bisque;
             height: 100px;
         }
         ```
     
-- Create another component using CLI and name it `SecondChild`:
-    ```
+3. Create another component using CLI and name it `SecondChild`:
+
+    ```.sh
     npx -p @angular/cli ng generate component components/second-child
     ```
-- Add Styling to second child component:
+4. Add Styling to second child component:
     - Open `src/app/components/second-child/second-child.component.ts` and add replace current code with the following:
-        ```
+
+        ```.html
         <div class="container">
             <p>second-child works!</p>
         </div>
         ```
     - Open `src/app/components/second-child/second-child.component.html` and add the following css:
-        ```
+
+        ```.css
         .container {
             background-color:cadetblue;
             height: 100px;
         }
         ```
 
-### Set Up Child Routes
+### 5.2 Set Up Child Routes
 
-- Open `src/app/app.routes.ts` file and do the following:
+1. Open `src/app/app.routes.ts` file and do the following:
     - Import `FirstChildComponent` and `SecondChildComponent`.
     - Place child routes in a children array within the parent route:
-        ```
+
+        ```.js
         { path: 'second-component', component: SecondComponent, children: [
             {path: 'first-child', component: FirstChildComponent},
             {path: 'second-child', component: SecondChildComponent}
@@ -168,13 +190,14 @@
         },
         ```
 
-### Update Parent
+### 5.3 Update Parent
 
-- Open `src/app/components/second/second.component.ts` and add do the following:
+1. Open `src/app/components/second/second.component.ts` and add do the following:
     - import `RouterOutlet` and `RouterLink` from `@angular/router`. 
-- Open `src/app/components/second/second.component.html` and add do the following:
+2. Open `src/app/components/second/second.component.html` and add do the following:
     - Use a routerLink attributes to add routes to selected elements:
-        ```
+
+        ```.html
         <nav>
             <ul>
                 <li><a routerLink="first-child">First Child</a></li>
@@ -183,10 +206,11 @@
         </nav>
         <router-outlet></router-outlet>
         ```
-### Start The Application
+### 5.4 Review Changes
 
--   Start Angular Development Server if not yet started:
-    ```
+1. Start Angular Development Server if not yet started:
+
+    ```.bash
     npx -p @angular/cli ng serve  --host 0.0.0.0 
     ```
-- Otherwise refresh the browser tab to see updated view.
+    > _Otherwise refresh the browser tab to see updated view._

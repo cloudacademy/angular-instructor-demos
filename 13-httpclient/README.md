@@ -2,22 +2,21 @@
 
 ## 1. Setup Project
 
-### 1.1 Install JSON Server Dependencies
+### 1.1 Install Dependencies
 
--   Change directory to `json-server`:
+1. Change directory to `calab`:
 
-    ```.bash
-    cd json-server
+    ```.sh
+    cd calab
     ```
+2. Install dependencies by running the following command:
 
--   Install dependencies by running the following command:
-
-    ```
+    ```.sh
     npm install
     ```
 
 ### 1.2 Start JSON Server
--   Start JSON server:
+1. Start JSON server:
 
     ```.bash
     npx json-server MOCK_DATA.json -p 3001
@@ -25,12 +24,12 @@
 
 ### 1.3 Install Angular Dependencies
 
--   Change directory to `calab`:
+1. Change directory to `calab`:
 
     ```.bash
     cd calab
     ```
--   Install dependencies by running the following command:
+2. Install dependencies by running the following command:
 
     ```.bash
     npm install
@@ -38,19 +37,19 @@
 
 ### 1.4 Start The Application
 
--   Start Angular Development Server if not yet started:
+1. Start Angular Development Server if not yet started:
 
     ```.bash
     npx -p @angular/cli ng serve  --host 0.0.0.0 
     ```
-- Otherwise refresh the browser tab to see updated view.
+    > _Otherwise refresh the browser tab to see updated view._
 
 ## 2. Setup HttpClient
 
 ### 2.1 Update App Configuration
 
-- Open `src/app/app.config.ts` file and do the following:
-    -  Provide `provideHttpClient` helper function:
+1. Open `src/app/app.config.ts` file and do the following:
+    - Provide `provideHttpClient` helper function:
 
         ```.js
         export const appConfig: ApplicationConfig = {
@@ -62,7 +61,7 @@
 
 ### 3.1 Create a new Service
 
--   Create a new component using CLI and name it `MovieService`:
+1. Create a new component using CLI and name it `MovieService`:
 
     ```.bash
     npx -p @angular/cli ng generate service services/movie
@@ -70,7 +69,7 @@
 
 ### 3.2 Inject The HttpClient Service 
 
--  Open `src/app/services/movie.service.ts` file and do the following:
+1. Open `src/app/services/movie.service.ts` file and do the following:
     - Inject `HttpClient` as a dependency into `MovieService` constructor.
 
         ```.js
@@ -82,10 +81,10 @@
 ## 4. Create a Movie Model
 
 ### 4.1 Create a new class representing a movie model
- - Create a new directory in `src/app/` called `models`.
- - Change directory to `src/app/models`
- - Create new `TypeScript` file called `movie.ts`
- - Add the following code inside `movie.ts`:
+1. Create a new directory in `src/app/` called `models`.
+2. Change directory to `src/app/models`
+3. Create new `TypeScript` file called `movie.ts`
+4. Add the following code inside `movie.ts`:
 
     ```.js
     export class Movie {
@@ -103,7 +102,7 @@
 ## 5. Making Http Requests
 
 ### 5.1 Create a GET http request
--  Open `src/app/services/movie.service.ts` file and do the following:
+1. Open `src/app/services/movie.service.ts` file and do the following:
     - Declare a new function called `getAllMovies` that calls http get() method.
 
         ```.js 
@@ -115,7 +114,7 @@
         ```
 
 ### 5.2 Call method containing GET http request 
--  Open `src/app/app.component.ts` file and do the following:
+1. Open `src/app/app.component.ts` file and do the following:
     - Inject `MovieService` as dependency into `AppComponent`.
 
         ```.js
@@ -136,7 +135,7 @@
         ```
 
 ### 5.3 Create a POST http request
--  Open `src/app/services/movie.service.ts` file and do the following:
+1. Open `src/app/services/movie.service.ts` file and do the following:
     - Declare a new function called `createMovie` that calls http post() method.
 
         ```.js
@@ -146,7 +145,7 @@
         ```
 
 ### 5.4 Call method containing POST http request 
--  Open `src/app/app.component.ts` file and do the following:
+1. Open `src/app/app.component.ts` file and do the following:
     - Inside constructor, create an instance of a movie.
 
         ```.js
@@ -167,18 +166,18 @@
 
 ### 5.5 Start The Application
 
--   Start Angular Development Server if not yet started:
+1. Start Angular Development Server if not yet started:
 
     ```.bash
     npx -p @angular/cli ng serve  --host 0.0.0.0 
     ```
-- Otherwise refresh the browser tab to see updated view.
+    > _Otherwise refresh the browser tab to see updated view._
 
 
 ## 6. Interceptors
 
 ### 6.1 Define an Interceptor
-- Open `src/app/app.config.ts` file and do the following:
+1. Open `src/app/app.config.ts` file and do the following:
     -  Define a `loggingInterceptor` helper function:
 
         ```.js
@@ -199,9 +198,9 @@
 
 ### 6.2 Start The Application
 
--   Start Angular Development Server if not yet started:
+1. Start Angular Development Server if not yet started:
 
     ```.bash
     npx -p @angular/cli ng serve  --host 0.0.0.0 
     ```
-- Otherwise refresh the browser tab to see updated view.
+    > _Otherwise refresh the browser tab to see updated view._

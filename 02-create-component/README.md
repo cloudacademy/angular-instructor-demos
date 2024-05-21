@@ -49,4 +49,4 @@
     ```.bash
     npx -p @angular/cli ng serve  --host 0.0.0.0 
     ```
-2. Otherwise refresh the browser tab to see updated view.
+    > _Otherwise refresh the browser tab to see updated view._

@@ -1,36 +1,45 @@
 # Create Angular Custom Directive
 
-### Install Dependencies
+## 1. Setup Project
 
--   Change directory to `calab`:
-    ```
+### 1.1 Install Dependencies
+
+1. Change directory to `calab`:
+
+    ```.sh
     cd calab
     ```
--   Install dependencies by running the following command:
-    ```
+2. Install dependencies by running the following command:
+
+    ```.sh
     npm install
     ```
 
-### Create a new Directive and Implement it's logic
+## 2. Create Directive
 
--   Create a new `IsAuth` directive using CLI:
-    ```
+### 2.1 Create a new Directive and Implement it's logic
+
+1. Create a new `IsAuth` directive using CLI:
+
+    ```.sh
     npx -p @angular/cli ng generate directive is-auth
     ```
-- Open `src/app/is-auth.directive.ts` file and do the following:
+2. Open `src/app/is-auth.directive.ts` file and do the following:
     - Import TemplateRef, and ViewContainerRef from @angular/core.
     - Update current `constructor` with following parameters:
-        ```
+
+        ```.js
         constructor(private templateRef: TemplateRef<any>, private viewContainer: ViewContainerRef) { 
         }
         ```
 
-### Implement @Input property 
+### 2.2 Implement @Input property 
 
-- Open `src/app/is-auth.directive.ts` file and do the following:
+1. Open `src/app/is-auth.directive.ts` file and do the following:
     - Import Input from @angular/core.
     - Define an input property `appIsAuth` with a setter. This allows you to pass a condition to the directive from the template.
-        ```
+
+        ```.js
         @Input() set appIsAuth(condition: boolean) {
             if (condition) {
             this.viewContainer.createEmbeddedView(this.templateRef);
@@ -39,36 +48,40 @@
             }
         }
         ```
-        - Use the setter to conditionally create or clear the embedded view in the ViewContainerRef based on the provided condition.
+        > _Use the setter to conditionally create or clear the embedded view in the ViewContainerRef based on the provided condition._
 
-### Apply the Directive using Long-form syntax
-- Open `src/app/is-auth.directive.html` file and do the following:
+## 3. Use Directive
+
+### 3.1 Apply the Directive using Long-form syntax
+1. Open `src/app/is-auth.directive.html` file and do the following:
+    - Inside `<div class="content">` insert the following:
+
+        ```.html
+        <!-- Long-form syntax: -->
+        <ng-template [appIsAuth]="true">
+            <p>You have access to privileged information.</p>
+        </ng-template>
+        ```
+        > _In this example, the content within the `<p>` will only be rendered if the appIsAuth property in the component is true. Otherwise, the content will not be displayed._
+
+
+### 3.2 Apply the Directive using Short-form syntax
+1. Open `src/app/is-auth.directive.html` file and do the following:
     - Inside `<div class="content">` insert the following
 
-    ```
-    <!-- Long-form syntax: -->
-    <ng-template [appIsAuth]="true">
-        <p>You have access to privileged information.</p>
-    </ng-template>
-    ```
-    - In this example, the content within the <p> will only be rendered if the appIsAuth property in the component is true. Otherwise, the content will not be displayed. 
+        ```.html
+        <!-- Shorthand syntax: -->
+        <p *appIsAuth="true">You have access to privileged information.</p>
+        ```
+        > _In this example, the content within the `<p>` will only be rendered if the appIsAuth property in the component is true. Otherwise, the content will not be displayed._
 
+### 3.3 Start The Application
 
-### Apply the Directive using Short-form syntax
-- Open `src/app/is-auth.directive.html` file and do the following:
-    - Inside `<div class="content">` insert the following
+1. Start Angular Development Server if not yet started:
 
-    ```
-    <!-- Shorthand syntax: -->
-    <p *appIsAuth="true">You have access to privileged information.</p>
-    ```
-
-    - In this example, the content within the <p> will only be rendered if the appIsAuth property in the component is true. Otherwise, the content will not be displayed. 
-
-### Start The Application
-
--   Start Angular Development Server:
-    ```
+    ```.bash
     npx -p @angular/cli ng serve  --host 0.0.0.0 
     ```
-- Inspect the Rendered Screen, you should see title `calab` being reversed.
+    > _Otherwise refresh the browser tab to see updated view._
+
+2. Inspect the Rendered Screen, you should see title `calab` being reversed.

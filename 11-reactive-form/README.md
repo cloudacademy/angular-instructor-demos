@@ -1,47 +1,56 @@
 # Angular Reactive Form Demo
 
-### Install Dependencies
+## 1. Setup Project
 
--   Change directory to `calab`:
-    ```
+### 1.1 Install Dependencies
+
+1. Change directory to `calab`:
+
+    ```.sh
     cd calab
     ```
--   Install dependencies by running the following command:
-    ```
+2. Install dependencies by running the following command:
+
+    ```.sh
     npm install
     ```
 
-## Create a Form Component
+## 2. Create a Form Component
 
-### Create a New Component
+### 2.1 Create a New Component
 
--   Create a new component using CLI and name it `OrderForm`:
-    ```
+1. Create a new component using CLI and name it `OrderForm`:
+
+    ```.sh
     npx -p @angular/cli ng generate component components/order-form 
     ```
-- Import `OrderForm` into `src/app/app.component.ts`:
-    ```
+2. Import `OrderForm` into `src/app/app.component.ts`:
+
+    ```.js
     import { MyComponentComponent } from './my-component/my-component.component';
     ```
 
-- Inside `src/app/app.component.ts` update `imports` to include `OrderForm`:
-    ```
+3. Inside `src/app/app.component.ts` update `imports` to include `OrderForm`:
+
+    ```.js
     imports: [RouterOutlet, OrderFormComponent],
     ```
 
-- Open `src/app/app.component.html` template and add the following element after the `<div class="divider"...`
-    ```
+4. Open `src/app/app.component.html` template and add the following element after the `<div class="divider"...`:
+
+    ```.html
     <app-order-form></app-order-form>
     ```
 
 
-## Setup Reactive Form in OrderFormComponent
+## 3. Setup Reactive Form in OrderFormComponent
 
-### Update Component
+### 3.1 Update Component
 
-- Open `src/app/components/order-form/order-form.component.ts` file and do the following:
+1. Open `src/app/components/order-form/order-form.component.ts` file and do the following:
     -  Update `imports` to include `ReactiveFormsModule`:
-        ```
+
+        ```.js
         @Component({
             ...
             imports: [ReactiveFormsModule],
@@ -49,22 +58,26 @@
         })
         ```
     - Create FormControl instancess inside your OrderFormComponent.
-        ```
+
+        ```.js
         product = new FormControl('');
         quantity = new FormControl('');
         ```
--  Open `src/app/components/order-form/order-form.component.html` file and do the following:
+
+2. Open `src/app/components/order-form/order-form.component.html` file and do the following:
     - Register controls in the template.
-        ```
+
+        ```.html
         <label for="product">Product: </label>
         <input id="product" type="text" [formControl]="product">
 
         <label for="quantity">Quantity: </label>
         <input id="quantity" type="text" [formControl]="quantity">
         ```
--  Open `src/app/components/order-form/order-form.component.css` file and do the following:
+3. Open `src/app/components/order-form/order-form.component.css` file and do the following:
     - Add some style.
-        ```
+
+        ```.css
         /* Style inputs */
         input, select {
             width: 100%;
@@ -101,39 +114,43 @@
         }
         ```
 
-## Displaying a Form Control Value
+## 4. Displaying a Form Control Value
 
-### Update Component
+### 4.1 Update Component
 
-- Open `src/app/components/order-form/order-form.component.ts` file and do the following:
+1. Open `src/app/components/order-form/order-form.component.ts` file and do the following:
     -  Subscribe to the valueChanges observable:
-        ```
+
+        ```.js
         ngOnInit() { 
             this.product.valueChanges.subscribe(data => console.log(`Product updated to ${data}`))
             this.quantity.valueChanges.subscribe(data => console.log(`Quantity updated to ${data}`))
         }
         ```
--  Open `src/app/components/order-form/order-form.component.html` file and do the following:
+2. Open `src/app/components/order-form/order-form.component.html` file and do the following:
     - Access the current value directly through the value property.
-        ```
+
+        ```.html
         <p>Current Product: {{product.value}}</p>
         <p>Current Quantity: {{quantity.value}}</p>
         ```
 
-## Grouping Form Controls
+## 5. Grouping Form Controls
 
-### Create A FormGroup Instance
-- Open `src/app/components/order-form/order-form.component.ts` file and do the following:
+### 5.1 Create A FormGroup Instance
+1. Open `src/app/components/order-form/order-form.component.ts` file and do the following:
     -  Create a FormGroup instance. Replace current code in OrderFormComponent class with the following:
-        ```
+
+        ```.js
         orderForm = new FormGroup({
             product: new FormControl(''),
             quantity: new FormControl(''),
         });
         ```
--  Open `src/app/components/order-form/order-form.component.html` file and do the following:
-    - Associate The FormGroup Model And View. Replace current HTML code with the following
-        ```
+2. Open `src/app/components/order-form/order-form.component.html` file and do the following:
+    - Associate The FormGroup Model And View. Replace current HTML code with the following:
+
+        ```.html
         <form [formGroup]="orderForm">
             <label for="product">Product: </label>
             <input id="product" type="text" formControlName="product">
@@ -142,65 +159,77 @@
         </form>
         ```
 
-### Save form Data
-- Open `src/app/components/order-form/order-form.component.ts` file and do the following:
+### 5.2 Save form Data
+1. Open `src/app/components/order-form/order-form.component.ts` file and do the following:
     -  create an onSubmit() callback method, allowing you to process the captured form data as needed:
-        ```
+
+        ```.js
         onSubmit() {
             // TODO: Use EventEmitter with form value
             console.warn(this.orderForm.value);
         }
         ```
--  Open `src/app/components/order-form/order-form.component.html` file and do the following:
-    - Add an ngSubmit event listener to the form tag with the onSubmit() callback method
-        ```
+2. Open `src/app/components/order-form/order-form.component.html` file and do the following:
+    - Add an ngSubmit event listener to the form tag with the onSubmit() callback method:
+
+        ```.html
         <form [formGroup]="orderForm" (submit)="onSubmit()">
             ...
         </form>
         ```
-    - Use button within <form> element to trigger Submit event
-        ```
+    - Use button within <form> element to trigger Submit event:
+
+        ```.html
         <form [formGroup]="orderForm" (submit)="onSubmit()">
             ... // form elements
             <button type="submit">Submit</button>
         </form>
         ```
 
-### Use FormBuilder Service
-- Open `src/app/components/order-form/order-form.component.ts` file and do the following:
+### 5.3 Use FormBuilder Service
+1. Open `src/app/components/order-form/order-form.component.ts` file and do the following:
     -  Inject the FormBuilder service into your component using dependency injection:
-        ```
+
+        ```.js
         constructor(private formBuilder: FormBuilder){}
         ```
-    - Replace FormGroup with FormBuilder
-        ```
+    - Replace FormGroup with FormBuilder:
+
+        ```.js
         orderForm = this.formBuilder.group({
             product: [''],
             quantity: [''],
         });
         ```
 
-### Define A FormArray Control
-- Open `src/app/components/order-form/order-form.component.ts` file and do the following:
-    - Add new property to your existing FormGroup
-        ```
+### 5.4 Define A FormArray Control
+1. Open `src/app/components/order-form/order-form.component.ts` file and do the following:
+    - Add new property to your existing FormGroup:
+
+        ```.js
         instructions: this.formBuilder.array([this.formBuilder.control('')])
         ``` 
+
     - Create a getter that provides an efficient way to access the values in your form array instance:
-        ```
+
+        ```.js
         get instructions() {
             return this.orderForm.get('instructions') as FormArray;
         }
         ```
+
     - Define a method to dynamically add an alias control to your form array:
-        ```
+
+        ```.js
         addInstruction(){
             this.instructions.push(this.formBuilder.control(''));
         }
         ```
-- Open `src/app/components/order-form/order-form.component.html` file and do the following:
-    - Integrate the form model's interests into your template
-    ```
+
+2. Open `src/app/components/order-form/order-form.component.html` file and do the following:
+    - Integrate the form model's interests into your template:
+
+    ```.html
     <form [formGroup]="orderForm" (submit)="onSubmit()">
         ... //form controls
         <div formArrayName="instructions">
@@ -217,12 +246,13 @@
     </form>
     ```
 
-## Reactive Form Validation
+## 6. Reactive Form Validation
 
-### Built-in Validators
-- Open `src/app/components/order-form/order-form.component.ts` file and do the following:
-    - Add required validators to product and quantity form controls. Update orderForm with the following.
-        ```
+### 6.1 Built-in Validators
+1. Open `src/app/components/order-form/order-form.component.ts` file and do the following:
+    - Add required validators to product and quantity form controls. Update orderForm with the following:
+
+        ```.js
         orderForm = this.formBuilder.group({
             product: ['', Validators.required],
             quantity: ['', Validators.required],
@@ -231,10 +261,11 @@
 
         ``` 
 
-### Custom Validators
-- Open `src/app/components/order-form/order-form.component.ts` file and do the following:
-    - Create a new method that validates agains list of forbidden product names
-        ```
+### 6.2 Custom Validators
+1. Open `src/app/components/order-form/order-form.component.ts` file and do the following:
+    - Create a new method that validates agains list of forbidden product names:
+
+        ```.js
           forbiddenNameValidator(): ValidatorFn {
             return (control: AbstractControl): ValidationErrors | null => {
                 const list = ['Lightsaber', 'Millennium Falcon'];
@@ -243,16 +274,19 @@
             };
         }
         ```
+
     - Add forbiddenNameValidator to product form controls. 
-        ```
+
+        ```.js
         product: ['', [Validators.required, this.forbiddenNameValidator()]],
         ```
 
 
-### Start The Application
+### 6.3 Review Changes
 
--   Start Angular Development Server if not yet started:
-    ```
+1. Start Angular Development Server if not yet started:
+
+    ```.bash
     npx -p @angular/cli ng serve  --host 0.0.0.0 
     ```
-- Otherwise refresh the browser tab to see updated view.
+    > _Otherwise refresh the browser tab to see updated view._

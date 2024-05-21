@@ -1,103 +1,125 @@
 # Angular Signals Demo
 
-### Install Dependencies
+## 1. Setup Project
 
--   Change directory to `calab`:
-    ```
+### 1.1 Install Dependencies
+
+1. Change directory to `calab`:
+
+    ```.sh
     cd calab
     ```
--   Install dependencies by running the following command:
-    ```
+2. Install dependencies by running the following command:
+
+    ```.sh
     npm install
     ```
 
-## Creating a Signal
+## 2. Creating a Signal
 
-### Create new Signal
-- Open `src/app/app.component.ts` file and do the following:
+### 2.1 Create new Signal
+1. Open `src/app/app.component.ts` file and do the following:
     - Import signal form `'@angular/core'`.
     - Inside `constructor` of `AppComponent` create a new signal and assign it to a variable:
-        ```
+
+        ```.js
         const quantity = signal(0);
         ```
     
-### Read value from the Signal
-- Open `src/app/app.component.ts` file and do the following:
+### 2.2 Read value from the Signal
+1. Open `src/app/app.component.ts` file and do the following:
     - Import effect form `'@angular/core'`.
     - Inside `constructor` of `AppComponent`, just below Signal, call an effect and log the Signal value:
-        ```
+
+        ```.js
         effect(() => {
             console.log(`The current quantity is: ${quantity()}`);
         });
         ```
 
-### Update Signal value
-- Open `src/app/app.component.ts` file and do the following:
+### 2.3 Update Signal value
+1. Open `src/app/app.component.ts` file and do the following:
     - Inside `constructor` of `AppComponent`, just below the effect, set new value to the Signal:
-        ```
+
+        ```.js
         quantity.set(1);
         ```
     - Now use alternative approach to change value in Signal called `update`:
-        ```
+
+        ```.js
         quantity.update(value => value + 1);
         ```
 
-## toSignal Example
+## 3. toSignal Example
 
-### Create an Observable 
-- Open `src/app/app.component.ts` file and do the following:
+### 3.1 Create an Observable 
+1. Open `src/app/app.component.ts` file and do the following:
     - Import `Observable` form `rxjs`.
     - Replace code inside `constructor` of `AppComponent`to the following:
-        ```
+
+        ```.js
         let increasingQuantity = new Observable<number>(observer => {
             let curVal = 0;
             setInterval(() => observer.next(curVal +=1), 5000);
         });
         ```
 
-### Convert Observable to Signal
-- Continue working with `src/app/app.component.ts` file:
+### 3.2 Convert Observable to Signal
+1. Continue working with `src/app/app.component.ts` file:
     - Import `toSignal` form `@angular/core/rxjs-interop`.
     - Just below previously declared Observable, add the following:
-        ```
+
+        ```.js
         let increasingQuantitySignal = toSignal(increasingQuantity, {initialValue: 0});
         ```
 
-### Read value from the newly converted Signal
-- Continue working with `src/app/app.component.ts` file:
+### 3.3 Read value from the newly converted Signal
+1. Continue working with `src/app/app.component.ts` file:
     - Import effect form `'@angular/core'`.
     - Inside `constructor` of `AppComponent`, just below Signal, call an effect and log the Signal value:
-        ```
+
+        ```.js
         effect(() => {
             console.log(`The current quantity is: ${increasingQuantitySignal()}`);
         });
         ```
 
-## toObservable Example
+## 4. toObservable Example
 
-### Create a Signal 
-- Open `src/app/app.component.ts` file and do the following:
+### 4.1 Create a Signal 
+1. Open `src/app/app.component.ts` file and do the following:
     - Import `signal` form `@angular/core`.
     - Replace code inside `constructor` of `AppComponent`to the following:
-        ```
+
+        ```.js
         let quantity = signal(0);
         ```
 
-### Convert Signal to Observable
-- Continue working with `src/app/app.component.ts` file:
+### 4.2 Convert Signal to Observable
+1. Continue working with `src/app/app.component.ts` file:
     - Import `toObservable` form `@angular/core/rxjs-interop`.
     - Just below previously declared Signal, add the following:
-        ```
+
+        ```.js
         let quantityObservable = toObservable(quantity);
         ```
 
-### Subscribe to observable to get async updates
-- Continue working with `src/app/app.component.ts` file:
+### 4.3 Subscribe to observable to get async updates
+1. Continue working with `src/app/app.component.ts` file:
     - Just below previously converted signal into observable add the following:
-        ```
+    
+        ```.js
         quantityObservable.subscribe({
             next: (v) => console.log(`Subscriber: The current quantity is: ${v}`),
             error: (e) => console.error(e),
             complete: () => console.info('complete') 
         });        
         ```
+### 4.4 Review Changes
+
+1. Start Angular Development Server if not yet started:
+
+    ```.bash
+    npx -p @angular/cli ng serve  --host 0.0.0.0 
+    ```
+    > _Otherwise refresh the browser tab to see updated view._

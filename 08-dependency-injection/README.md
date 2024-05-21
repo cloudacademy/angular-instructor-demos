@@ -1,40 +1,48 @@
 # Angular Dependency Injection Demo
 
-### Install Dependencies
+## 1. Setup Project
 
--   Change directory to `calab`:
-    ```
+### 1.1 Install Dependencies
+
+1. Change directory to `calab`:
+
+    ```.sh
     cd calab
     ```
--   Install dependencies by running the following command:
-    ```
+2. Install dependencies by running the following command:
+
+    ```.sh
     npm install
     ```
 
-## Creating Injectable Service
+## 2. Creating Injectable Service
 
-### Create a new Course Service and Implement it's logic
+### 2.1 Create a new Course Service and Implement it's logic
 
-- Create a new `CourseService` using CLI:
-    ```
+1. Create a new `CourseService` using CLI:
+
+    ```.sh
     npx -p @angular/cli ng generate service course/course 
     ```
-- Open `src/app/course/course.service.ts` file and do the following:
+2. Open `src/app/course/course.service.ts` file and do the following:
     - Import Mock course data from the following file:
-        ```
+
+        ```.js
         import  COURSES   from './MOCK_COURSE_DATA.json';
         ```
     - Add the following method just after the `constructor`:
-        ```
-          getCourses(){
+
+        ```.js
+        getCourses(){
             return COURSES;
         }
         ```
 
-### Implement Course Model Class
-- Inside `src/app/course` folder create a new file called `course.ts`.
-- Open `course.ts` and add the following code:
-    ```
+### 2.2 Implement Course Model Class
+1. Inside `src/app/course` folder create a new file called `course.ts`.
+2. Open `course.ts` and add the following code:
+
+    ```.js
     export class Course{
         course_id: number | undefined;
         course_name: string | undefined;
@@ -43,31 +51,36 @@
     }
     ```
 
-### Inject Course Service Into AppComponent
+### 2.3 Inject Course Service Into AppComponent
 
-- Open `src/app/app.component.ts` file and do the following:
+1. Open `src/app/app.component.ts` file and do the following:
     - Import Course model:
-        ```
+
+        ```.js
         import { Course } from './course/course';
         ```
     - Inside `AppComponent` class declare variable called courses with type of list of Courses:
-        ```
+
+        ```.js
         courses: Course[] = [];
         ```
         
     - Add the `CourseService` as a parameter into the  `constructor`.
-        ```
+
+        ```.js
         constructor(private courseService: CourseService){}
         ```
     - Fetch list of courses by calling `getCourses()` method from `courseService` and assign responce to variable declared above.
-        ```
+
+        ```.js
         this.courses = courseService.getCourses();
         ```
 
-### Render List of Courses
+### 2.4 Render List of Courses
 
-- Open `src/app/app.component.html` file and just below the `<div class="divider">` add the following code that loops list of courses and renders each course in a list:
-    ```
+1. Open `src/app/app.component.html` file and just below the `<div class="divider">` add the following code that loops list of courses and renders each course in a list:
+
+    ```.html
       <ul>
         @for (course of courses; track course.course_id) {
           <li>
@@ -85,65 +98,76 @@
       </ul>
     ```
 
-### Start The Application
+### 2.5 Start The Application
 
--   Start Angular Development Server:
-    ```
+1. Start Angular Development Server if not yet started:
+
+    ```.bash
     npx -p @angular/cli ng serve  --host 0.0.0.0 
     ```
-- Inspect the Rendered Screen, you should see list of courses on your screen.
+    > _Otherwise refresh the browser tab to see updated view._
 
-## Injecting services in other services 
+2. Inspect the Rendered Screen, you should see list of courses on your screen.
 
-### Create a new Logger and Implement it's logic
+## 3. Injecting services in other services 
 
-- Create a new `Logger` using CLI:
-    ```
+### 3.1 Create a new Logger and Implement it's logic
+
+1. Create a new `Logger` using CLI:
+
+    ```.sh
     npx -p @angular/cli ng generate service logger/logger 
     ```
-- Open `src/app/logger/logger.service.ts` file and do the following:
+2. Open `src/app/logger/logger.service.ts` file and do the following:
     - Create logging methods just below the `constructor` :
-        ```
+
+        ```.js
         log(msg: unknown) { console.log(msg); }
         error(msg: unknown) { console.error(msg); }
         warn(msg: unknown) { console.warn(msg); }
         ```
 
-### Inject Logger Service Into Course Service and Log When Courses are Fetched
+### 3.2 Inject Logger Service Into Course Service and Log When Courses are Fetched
 
-- Open `src/app/course/course.service.ts` file and do the following:
+1. Open `src/app/course/course.service.ts` file and do the following:
     - Import Logger service:
-        ```
+
+        ```.js
         import { LoggerService } from '../logger/logger.service';
         ```
 
     - Add the `CourseService` as a parameter into the  `constructor`.
-        ```
+
+        ```.js
         constructor(private logger: LoggerService) { }
         ```
     - Inside `getCourses()` method log that courses are getting fetched.
-        ```
+
+        ```.js
         this.logger.log('Fetching Courses');
         ```
 
 
-## Configuring Dependency Providers
+## 4. Configuring Dependency Providers
 
 
-### Creating Enhanced Logger
+### 4.1 Creating Enhanced Logger
 
-- Create a new `TimedLoggerService` using CLI:
-    ```
+1. Create a new `TimedLoggerService` using CLI:
+
+    ```.sh
     npx -p @angular/cli ng generate service logger/timed-logger 
     ```
 
-- Open `src/app/logger/timed-logger.service.ts` file and do the following:
+2. Open `src/app/logger/timed-logger.service.ts` file and do the following:
     - Extend `LoggerService` with `TimedLoggerService`:
-        ```
+
+        ```.js
         export class TimeLoggerService extends LoggerService {...}
         ```
-    - Override logging methods just below the `constructor` :
-        ```
+    - Override logging methods just below the `constructor`:
+
+        ```.js
         constructor() {
             super()
         }
@@ -161,17 +185,26 @@
         }
         ```
 
-### Configure an app-wide provider in the ApplicationConfig of bootstrapApplication, it overrides one configured for root in the @Injectable() metadata.
+### 4.2 Configure an app-wide provider in the ApplicationConfig of bootstrapApplication, it overrides one configured for root in the @Injectable() metadata.
 
-- Open `app.config.ts` file and add the following:
+1. Open `app.config.ts` file and add the following:
     - Update providers with the following:
-    ```
+
+    ```.js
       providers: [provideRouter(routes), provideClientHydration(), {provide: LoggerService, useClass: TimeLoggerService}]
     ```
 
-### Review Changes
+### 4.3 Review Changes
 
-- Inspect console and see whether your application logs with new Enhanced Timed Logger.
+1. Start Angular Development Server if not yet started:
+
+    ```.bash
+    npx -p @angular/cli ng serve  --host 0.0.0.0 
     ```
+    > _Otherwise refresh the browser tab to see updated view._
+
+2. Inspect console and see whether your application logs with new Enhanced Timed Logger.
+
+    ```.sh
     1714649534570: Fetching Courses
     ```
