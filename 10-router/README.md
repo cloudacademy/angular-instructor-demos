@@ -52,24 +52,29 @@
 
 1. Open `src/app/app.component.ts` file and do the following:
     - Import `RouterLink` from the `@angular/router`.
+    - Update imports arrray with `RouterLink`:
+        ```.js
+        imports: [RouterOutlet, RouterLink],
+        ```
 2. Open `src/app/app.component.html` file and do the following:
     - Just below `<div class="divider"...` Use a routerLink attributes to add routes to selected elements:
 
         ```.html
          <nav>
             <ul>
-                <li><a routerLink="/first-component/MyName" >First Component</a></li>
+                <li><a routerLink="/first-component" >First Component</a></li>
                 <li><a routerLink="/second-component">Second Component</a></li>
             </ul>
         </nav>
         ```
+    - Move `<router-outlet />` from bottom of HTML page to just after the  `<nav>`:
 
 ### 3.3 Review Changes
 
 1. Start Angular Development Server if not yet started:
 
     ```.bash
-    npx -p @angular/cli ng serve  --host 0.0.0.0 
+    npx -p @angular/cli ng serve
     ```
     > _Otherwise refresh the browser tab to see updated view._
 
@@ -91,6 +96,8 @@
 1. Open `src/app/components/first/first.component.ts` and add the following code:
 
     ```.js
+    import { Component, Input } from '@angular/core';
+
     @Component({
         selector: 'app-first',
         standalone: true,
@@ -101,6 +108,11 @@
     export class FirstComponent {
           @Input() name = '';
     }
+    ```
+1. Open `src/app/components/first/first.component.html` and replace current `<p>` with the following:
+
+    ```.html
+    <p>Hello {{name}}</p>
     ```
 
 ### 4.3 Update path in router array to include path parameter or query string.
@@ -124,7 +136,7 @@
 1. Start Angular Development Server if not yet started:
 
     ```.bash
-    npx -p @angular/cli ng serve  --host 0.0.0.0 
+    npx -p @angular/cli ng serve 
     ```
     > _Otherwise refresh the browser tab to see updated view._
 
@@ -138,14 +150,14 @@
     npx -p @angular/cli ng generate component components/first-child
     ```
 2. Add Styling to first child component:
-    - Open `src/app/components/first-child/first-child.component.ts` and add replace current code with the following:
+    - Open `src/app/components/first-child/first-child.component.html` and add replace current code with the following:
 
         ```.html
         <div class="container">
             <p>first-child works!</p>
         </div>
         ```
-    - Open `src/app/components/first-child/first-child.component.html` and add the following css:
+    - Open `src/app/components/first-child/first-child.component.css` and add the following css:
 
         ```.css
         .container {
@@ -160,14 +172,14 @@
     npx -p @angular/cli ng generate component components/second-child
     ```
 4. Add Styling to second child component:
-    - Open `src/app/components/second-child/second-child.component.ts` and add replace current code with the following:
+    - Open `src/app/components/second-child/second-child.component.html` and add replace current code with the following:
 
         ```.html
         <div class="container">
             <p>second-child works!</p>
         </div>
         ```
-    - Open `src/app/components/second-child/second-child.component.html` and add the following css:
+    - Open `src/app/components/second-child/second-child.component.css` and add the following css:
 
         ```.css
         .container {
@@ -180,6 +192,10 @@
 
 1. Open `src/app/app.routes.ts` file and do the following:
     - Import `FirstChildComponent` and `SecondChildComponent`.
+        ```.js
+        import { FirstChildComponent } from './components/first-child/first-child.component';
+        import { SecondChildComponent } from './components/second-child/second-child.component';
+        ```
     - Place child routes in a children array within the parent route:
 
         ```.js
@@ -193,7 +209,13 @@
 ### 5.3 Update Parent
 
 1. Open `src/app/components/second/second.component.ts` and add do the following:
-    - import `RouterOutlet` and `RouterLink` from `@angular/router`. 
+    - Import `RouterOutlet` and `RouterLink` from `@angular/router`. 
+    - Update imports array with `RouterOutlet` and `RouterLink`.
+
+        ```.js
+        imports: [RouterOutlet, RouterLink],
+        ```
+
 2. Open `src/app/components/second/second.component.html` and add do the following:
     - Use a routerLink attributes to add routes to selected elements:
 
@@ -211,6 +233,6 @@
 1. Start Angular Development Server if not yet started:
 
     ```.bash
-    npx -p @angular/cli ng serve  --host 0.0.0.0 
+    npx -p @angular/cli ng serve 
     ```
     > _Otherwise refresh the browser tab to see updated view._
