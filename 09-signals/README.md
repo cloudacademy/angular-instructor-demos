@@ -50,6 +50,20 @@
         quantity.update(value => value + 1);
         ```
 
+### 2.4 Review Changes
+
+1. Start Angular Development Server if not yet started:
+
+    ```.bash
+    npx -p @angular/cli ng serve
+    ```
+    > _Otherwise refresh the browser tab to see updated view._
+2. Inspect developer console if using Chrome for any logs. You should see the following:
+    
+    ```.sh
+    The current quantity is: 2
+    ```
+
 ## 3. toSignal Example
 
 ### 3.1 Create an Observable 
@@ -83,6 +97,26 @@
             console.log(`The current quantity is: ${increasingQuantitySignal()}`);
         });
         ```
+### 3.4 Review Changes
+
+1. Start Angular Development Server if not yet started:
+
+    ```.bash
+    npx -p @angular/cli ng serve
+    ```
+    > _Otherwise refresh the browser tab to see updated view._
+2. Inspect developer console if using Chrome for any logs. You should see the following geting printed every 5 seconds:
+    
+    ```.sh
+    The current quantity is: 1
+    .
+    .
+    .
+    The current quantity is: 2
+    .
+    .
+    .
+    ```
 
 ## 4. toObservable Example
 
@@ -120,6 +154,13 @@
 1. Start Angular Development Server if not yet started:
 
     ```.bash
-    npx -p @angular/cli ng serve  --host 0.0.0.0 
+    npx -p @angular/cli ng serve
     ```
     > _Otherwise refresh the browser tab to see updated view._
+
+2. Inspect developer console if using Chrome for any logs. You should see the following geting printed:
+
+    ```.sh
+    Subscriber: The current quantity is: 0
+    complete
+    ```
