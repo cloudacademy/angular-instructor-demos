@@ -53,7 +53,20 @@
 ## 3. Use Directive
 
 ### 3.1 Apply the Directive using Long-form syntax
-1. Open `src/app/is-auth.directive.html` file and do the following:
+1. Open `src/app/app.component.ts` file and do the following:
+    - Import `IsAuthDirective`.
+
+        ```.js
+        import { IsAuthDirective } from './is-auth.directive';
+        ```
+
+    - Update imports to include `IsAuthDirective`.
+
+        ```.js
+        imports: [RouterOutlet, IsAuthDirective],
+        ```
+
+1. Open `src/app/app.component.html` file and do the following:
     - Inside `<div class="content">` insert the following:
 
         ```.html
@@ -64,10 +77,20 @@
         ```
         > _In this example, the content within the `<p>` will only be rendered if the appIsAuth property in the component is true. Otherwise, the content will not be displayed._
 
+### 3.2 Inspect Changes
 
-### 3.2 Apply the Directive using Short-form syntax
-1. Open `src/app/is-auth.directive.html` file and do the following:
-    - Inside `<div class="content">` insert the following
+1. Start Angular Development Server if not yet started:
+
+    ```.bash
+    npx -p @angular/cli ng serve
+    ```
+    > _Otherwise refresh the browser tab to see updated view._
+
+2. Inspect the Rendered Screen, you should see "You have access to privileged information." paragraph.
+
+### 3.3 Apply the Directive using Short-form syntax
+1. Open `src/app/app.component.html` file and do the following:
+    - Inside `<div class="content">` replace Long-form directive declaration syntax with the Shorthand one
 
         ```.html
         <!-- Shorthand syntax: -->
@@ -75,13 +98,13 @@
         ```
         > _In this example, the content within the `<p>` will only be rendered if the appIsAuth property in the component is true. Otherwise, the content will not be displayed._
 
-### 3.3 Start The Application
+### 3.4 Inspect Changes
 
 1. Start Angular Development Server if not yet started:
 
     ```.bash
-    npx -p @angular/cli ng serve  --host 0.0.0.0 
+    npx -p @angular/cli ng serve
     ```
     > _Otherwise refresh the browser tab to see updated view._
 
-2. Inspect the Rendered Screen, you should see title `calab` being reversed.
+2. Inspect the Rendered Screen, you should see "You have access to privileged information." paragraph.
