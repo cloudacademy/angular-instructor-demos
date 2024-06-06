@@ -31,7 +31,5 @@
 4. Start your newly created Angular application using local Angular CLI instance.
 
     ```.bash
-    npx -p @angular/cli ng serve --host 0.0.0.0
+    npx -p @angular/cli ng serve
     ```
-
-    > _--host 0.0.0.0  means that IP address 0.0.0.0 is used on servers to designate a service may bind to all network interfaces. It tells a server to "listen" for and accept connections from any IP address._

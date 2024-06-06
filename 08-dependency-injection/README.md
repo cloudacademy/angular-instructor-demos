@@ -54,10 +54,11 @@
 ### 2.3 Inject Course Service Into AppComponent
 
 1. Open `src/app/app.component.ts` file and do the following:
-    - Import Course model:
+    - Import Course model and CourseService:
 
         ```.js
         import { Course } from './course/course';
+        import { CourseService } from './course/course.service';
         ```
     - Inside `AppComponent` class declare variable called courses with type of list of Courses:
 
@@ -70,7 +71,7 @@
         ```.js
         constructor(private courseService: CourseService){}
         ```
-    - Fetch list of courses by calling `getCourses()` method from `courseService` and assign responce to variable declared above.
+    - Inside the constructor, fetch list of courses by calling `getCourses()` method from `courseService` and assign responce to variable declared above.
 
         ```.js
         this.courses = courseService.getCourses();
@@ -103,7 +104,7 @@
 1. Start Angular Development Server if not yet started:
 
     ```.bash
-    npx -p @angular/cli ng serve  --host 0.0.0.0 
+    npx -p @angular/cli ng serve
     ```
     > _Otherwise refresh the browser tab to see updated view._
 
@@ -148,6 +149,21 @@
         ```
 
 
+### 3.3 Review Changes
+
+1. Start Angular Development Server if not yet started:
+
+    ```.bash
+    npx -p @angular/cli ng serve
+    ```
+    > _Otherwise refresh the browser tab to see updated view._
+
+2. Inspect console and see whether your application logs with new Enhanced Timed Logger.
+
+    ```.sh
+    Fetching Courses
+    ```
+
 ## 4. Configuring Dependency Providers
 
 
@@ -160,7 +176,13 @@
     ```
 
 2. Open `src/app/logger/timed-logger.service.ts` file and do the following:
-    - Extend `LoggerService` with `TimedLoggerService`:
+    - Import `LoggerService`
+
+        ```.js
+        import { LoggerService } from './logger.service';
+        ```
+
+    - Make `TimedLoggerService` to extend `LoggerService`:
 
         ```.js
         export class TimeLoggerService extends LoggerService {...}
@@ -188,18 +210,25 @@
 ### 4.2 Configure an app-wide provider in the ApplicationConfig of bootstrapApplication, it overrides one configured for root in the @Injectable() metadata.
 
 1. Open `app.config.ts` file and add the following:
+    - Import `LoggerService` and `TimedLoggerService`.
+
+        ```.js
+        import { LoggerService } from './logger/logger.service';
+        import { TimedLoggerService } from './logger/timed-logger.service';
+        ```
+
     - Update providers with the following:
 
-    ```.js
-      providers: [provideRouter(routes), provideClientHydration(), {provide: LoggerService, useClass: TimeLoggerService}]
-    ```
+        ```.js
+        providers: [provideRouter(routes), provideClientHydration(), {provide: LoggerService, useClass: TimedLoggerService}]
+        ```
 
 ### 4.3 Review Changes
 
 1. Start Angular Development Server if not yet started:
 
     ```.bash
-    npx -p @angular/cli ng serve  --host 0.0.0.0 
+    npx -p @angular/cli ng serve
     ```
     > _Otherwise refresh the browser tab to see updated view._
 

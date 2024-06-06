@@ -28,7 +28,7 @@
 
     ```.js
     transform(value: string, ...args: unknown[]): unknown {
-        return value.split("").reverse().join("");;
+        return value.split("").reverse().join("");
     }
     ```
 
@@ -42,12 +42,18 @@
     imports: [RouterOutlet, ReversePipe],
     ```
 
+1. Inside `src/app/app.component.html` use ReversePipe:
+
+    ```.html
+    <h1>Hello, {{ title | reverse }}</h1>
+    ```
+
 ### 2.3 Start The Application
 
 1. Start Angular Development Server if not yet started:
 
     ```.bash
-    npx -p @angular/cli ng serve  --host 0.0.0.0 
+    npx -p @angular/cli ng serve 
     ```
     > _Otherwise refresh the browser tab to see updated view._
 

@@ -47,6 +47,6 @@
 1. Start Angular Development Server if not yet started:
 
     ```.bash
-    npx -p @angular/cli ng serve  --host 0.0.0.0 
+    npx -p @angular/cli ng serve 
     ```
     > _Otherwise refresh the browser tab to see updated view._

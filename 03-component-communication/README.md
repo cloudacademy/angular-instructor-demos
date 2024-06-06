@@ -86,18 +86,24 @@
 
     ```.html
     <h2>Parent Component</h2>
-    <app-child-component [message]="parentMessage" (messageEvent)="receiveMessage($event)"></app-child-component>
+    <app-child [message]="parentMessage" (messageEvent)="receiveMessage($event)"></app-child>
     <p>{{ childMessage }}</p>
     ```
 
 
 ### 2.3 Inject Parent component into AppComponent
 
-1. Inside `src/app/app.component.ts` update `imports` to include `ParentComponent`:
+1. Inside `src/app/app.component.ts` do the following:
+    - Import `ParentComponent`:
 
-    ```.js
-    imports: [RouterOutlet, ParentComponent],
-    ```
+        ```.js
+        import { ParentComponent } from './parent/parent.component';
+        ```
+    - Update `imports` to include `ParentComponent`:
+
+        ```.js
+        imports: [RouterOutlet, ParentComponent],
+        ```
 
 2. Open `src/app/app.component.html` template and add the following element after the `<div class="divider"...`
 
@@ -110,6 +116,6 @@
 1. Start Angular Development Server if not yet started:
 
     ```.bash
-    npx -p @angular/cli ng serve  --host 0.0.0.0 
+    npx -p @angular/cli ng serve
     ```
     > _Otherwise refresh the browser tab to see updated view._

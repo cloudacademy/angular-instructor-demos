@@ -27,7 +27,14 @@
 
 ### 2.2 Inject CustomInput Component into AppComponent
 
-1. Inside `src/app/app.component.ts` update `imports` to include `CustomInputComponent`:
+1. Inside `src/app/app.component.ts` do the following:
+    - Import `CustomInputComponent`:
+
+    ```.js
+    import { CustomInputComponent } from './custom-input/custom-input.component'; 
+    ```
+
+    - Update `imports` to include `CustomInputComponent`:
 
     ```.js
     imports: [RouterOutlet, CustomInputComponent],
@@ -44,7 +51,7 @@
 1. Start Angular Development Server if not yet started:
 
     ```.bash
-    npx -p @angular/cli ng serve  --host 0.0.0.0 
+    npx -p @angular/cli ng serve 
     ```
     > _Otherwise refresh the browser tab to see updated view._
 
@@ -98,6 +105,6 @@
 1. Start Angular Development Server if not yet started:
 
     ```.bash
-    npx -p @angular/cli ng serve  --host 0.0.0.0 
+    npx -p @angular/cli ng serve
     ```
     > _Otherwise refresh the browser tab to see updated view._
