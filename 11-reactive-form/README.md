@@ -27,7 +27,7 @@
 2. Import `OrderForm` into `src/app/app.component.ts`:
 
     ```.js
-    import { MyComponentComponent } from './my-component/my-component.component';
+    import { OrderFormComponent } from './components/order-form/order-form.component';
     ```
 
 3. Inside `src/app/app.component.ts` update `imports` to include `OrderForm`:
@@ -42,13 +42,29 @@
     <app-order-form></app-order-form>
     ```
 
+### 2.2 Review Changes
+
+1. Start Angular Development Server if not yet started:
+
+    ```.bash
+    npx -p @angular/cli ng serve
+    ```
+    > _Otherwise refresh the browser tab to see updated view._
+2. You should see placeholder for `OrderForm` component rendered on a screen.
+ 
 
 ## 3. Setup Reactive Form in OrderFormComponent
 
 ### 3.1 Update Component
 
 1. Open `src/app/components/order-form/order-form.component.ts` file and do the following:
-    -  Update `imports` to include `ReactiveFormsModule`:
+
+    - Import `ReactiveFormsModule` and `FormControl`:
+        ```.js
+        import { FormControl, ReactiveFormsModule } from '@angular/forms';
+        ```
+
+    - Update `imports` to include `ReactiveFormsModule`:
 
         ```.js
         @Component({
@@ -114,6 +130,16 @@
         }
         ```
 
+### 3.2 Review Changes
+
+1. Start Angular Development Server if not yet started:
+
+    ```.bash
+    npx -p @angular/cli ng serve
+    ```
+    > _Otherwise refresh the browser tab to see updated view._
+2. You should see `OrderForm` rendered on a screen.
+
 ## 4. Displaying a Form Control Value
 
 ### 4.1 Update Component
@@ -135,18 +161,39 @@
         <p>Current Quantity: {{quantity.value}}</p>
         ```
 
+### 4.2 Review Changes
+
+1. Start Angular Development Server if not yet started:
+
+    ```.bash
+    npx -p @angular/cli ng serve
+    ```
+    > _Otherwise refresh the browser tab to see updated view._
+2. Inspect developer console if using Chrome for any logs. You should see the following geting printed once values A and B typed in a form:
+    ```.sh
+    Product updated to A
+    Quantity updated to B
+    ```
+
 ## 5. Grouping Form Controls
 
 ### 5.1 Create A FormGroup Instance
 1. Open `src/app/components/order-form/order-form.component.ts` file and do the following:
-    -  Create a FormGroup instance. Replace current code in OrderFormComponent class with the following:
+    -  Create a FormGroup instance. 
+        - Import `FormGroup`:
 
-        ```.js
-        orderForm = new FormGroup({
-            product: new FormControl(''),
-            quantity: new FormControl(''),
-        });
-        ```
+            ```.js
+            import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+            ```
+
+        - Replace current code in OrderFormComponent class with the following:
+
+            ```.js
+            orderForm = new FormGroup({
+                product: new FormControl(''),
+                quantity: new FormControl(''),
+            });
+            ```
 2. Open `src/app/components/order-form/order-form.component.html` file and do the following:
     - Associate The FormGroup Model And View. Replace current HTML code with the following:
 
@@ -186,9 +233,28 @@
         </form>
         ```
 
-### 5.3 Use FormBuilder Service
+### 5.3 Review Changes
+
+1. Start Angular Development Server if not yet started:
+
+    ```.bash
+    npx -p @angular/cli ng serve
+    ```
+    > _Otherwise refresh the browser tab to see updated view._
+2. Inspect developer console if using Chrome for any logs. You should see the following geting printed once values A and B typed in a form and Submit button is clicked:
+    ```.sh
+    {product: 'A', quantity: 'B'}
+    ```
+
+### 5.4 Use FormBuilder Service
 1. Open `src/app/components/order-form/order-form.component.ts` file and do the following:
-    -  Inject the FormBuilder service into your component using dependency injection:
+    - Import `FormBuilder` and `FormArray`:
+
+        ```.js
+        import { FormBuilder, FormArray, ReactiveFormsModule } from '@angular/forms';
+        ```
+
+    -  Inject the `FormBuilder` service into your component using dependency injection:
 
         ```.js
         constructor(private formBuilder: FormBuilder){}
@@ -202,7 +268,7 @@
         });
         ```
 
-### 5.4 Define A FormArray Control
+### 5.5 Define A FormArray Control
 1. Open `src/app/components/order-form/order-form.component.ts` file and do the following:
     - Add new property to your existing FormGroup:
 
@@ -246,10 +312,26 @@
     </form>
     ```
 
+### 5.6 Review Changes
+
+1. Start Angular Development Server if not yet started:
+
+    ```.bash
+    npx -p @angular/cli ng serve
+    ```
+    > _Otherwise refresh the browser tab to see updated view._
+2. Your form should now allow you to add instructions.
+
 ## 6. Reactive Form Validation
 
 ### 6.1 Built-in Validators
 1. Open `src/app/components/order-form/order-form.component.ts` file and do the following:
+    - Import `Validators`:
+
+        ```.js
+        import { FormBuilder, FormArray, ReactiveFormsModule, Validators } from '@angular/forms';
+        ```
+
     - Add required validators to product and quantity form controls. Update orderForm with the following:
 
         ```.js
@@ -263,6 +345,12 @@
 
 ### 6.2 Custom Validators
 1. Open `src/app/components/order-form/order-form.component.ts` file and do the following:
+    - Import `ValidatorFn`, `AbstractControl` and `ValidationErrors`:
+
+        ```.js
+        import { FormBuilder, FormArray, ReactiveFormsModule, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
+        ```
+
     - Create a new method that validates agains list of forbidden product names:
 
         ```.js
@@ -287,6 +375,6 @@
 1. Start Angular Development Server if not yet started:
 
     ```.bash
-    npx -p @angular/cli ng serve  --host 0.0.0.0 
+    npx -p @angular/cli ng serve
     ```
     > _Otherwise refresh the browser tab to see updated view._
