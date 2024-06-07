@@ -28,7 +28,7 @@
 2. Import `OrderForm` into `src/app/app.component.ts`:
 
     ```.js
-    import { MyComponentComponent } from './my-component/my-component.component';
+    import { OrderFormComponent } from './components/order-form/order-form.component';
     ```
 
 3. Inside `src/app/app.component.ts` update `imports` to include `OrderForm`:
@@ -42,13 +42,27 @@
     ```.html
     <app-order-form></app-order-form>
     ```
+### 2.2 Review Changes
 
+1. Start Angular Development Server if not yet started:
+
+    ```.bash
+    npx -p @angular/cli ng serve
+    ```
+    > _Otherwise refresh the browser tab to see updated view._
+2. You should see placeholder for `OrderForm` component rendered on a screen.
 
 ## 3. Setup Template-driven Form in OrderFormComponent
 
 ### 3.1 Update Component
 
 1. Open `src/app/components/order-form/order-form.component.ts` file and do the following:
+    - Import `FormsModule`:
+
+        ```.js
+        import { FormsModule } from '@angular/forms';
+        ```
+
     -  Update `imports` to include `FormsModule`:
 
         ```.js
@@ -58,6 +72,7 @@
             ...
         })
         ```
+
 ### 3.2 Create The Form Template
 1. Open `src/app/components/order-form/order-form.component.html` file and do the following:
     - Create a form template:
@@ -116,6 +131,7 @@
 1. Create a new class inside `src/app/components/order-form/` representing an Order Model:
 
     ```.js
+    // order.ts
     export class Order {
         constructor(
             public product: string,
@@ -125,6 +141,12 @@
     ```
 
 2. Open `src/app/components/order-form/order-form.component.ts` file and do the following:
+    - Import Order model:
+
+        ```.js
+        import { Order } from './Order';
+        ```
+
     -  Declare a model that you want to bind to the template:
 
         ```.js
@@ -165,6 +187,18 @@
 
         ```
 
+### 3.5 Review Changes
+
+1. Start Angular Development Server if not yet started:
+
+    ```.bash
+    npx -p @angular/cli ng serve  --host 0.0.0.0 
+    ```
+    > _Otherwise refresh the browser tab to see updated view._
+
+2. You should see Form with submit button displayed on your screen.
+
+
 ## 4. Template-driven Form Validation
 
 ### 4.1 Show And Hide Validation Error Messages
@@ -192,3 +226,4 @@
     npx -p @angular/cli ng serve  --host 0.0.0.0 
     ```
     > _Otherwise refresh the browser tab to see updated view._
+2. You should see error message displayed if no value is entered in Product field.
