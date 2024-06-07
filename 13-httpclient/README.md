@@ -2,12 +2,12 @@
 
 ## 1. Setup Project
 
-### 1.1 Install Dependencies
+### 1.1 Install JSON Server Dependencies
 
-1. Change directory to `calab`:
+1. Change directory to `json-server`:
 
     ```.sh
-    cd calab
+    cd json-server
     ```
 2. Install dependencies by running the following command:
 
@@ -24,7 +24,8 @@
 
 ### 1.3 Install Angular Dependencies
 
-1. Change directory to `calab`:
+1. Open new Terminal window.
+2. Change directory to `calab`:
 
     ```.bash
     cd calab
@@ -40,7 +41,7 @@
 1. Start Angular Development Server if not yet started:
 
     ```.bash
-    npx -p @angular/cli ng serve  --host 0.0.0.0 
+    npx -p @angular/cli ng serve
     ```
     > _Otherwise refresh the browser tab to see updated view._
 
@@ -49,11 +50,17 @@
 ### 2.1 Update App Configuration
 
 1. Open `src/app/app.config.ts` file and do the following:
+    - Import `provideHttpClient`:
+
+        ```.js
+        import { provideHttpClient } from '@angular/common/http';
+        ```
+
     - Provide `provideHttpClient` helper function:
 
         ```.js
         export const appConfig: ApplicationConfig = {
-            providers: [ provideRouter(routes), provideHttpClient() ]
+            providers: [ provideRouter(routes), provideClientHydration(), provideHttpClient() ]
         };
         ```
 
@@ -70,6 +77,12 @@
 ### 3.2 Inject The HttpClient Service 
 
 1. Open `src/app/services/movie.service.ts` file and do the following:
+    - Import `HttpClient`:
+
+        ```.js
+        import { HttpClient } from '@angular/common/http';
+        ```
+
     - Inject `HttpClient` as a dependency into `MovieService` constructor.
 
         ```.js
@@ -103,6 +116,12 @@
 
 ### 5.1 Create a GET http request
 1. Open `src/app/services/movie.service.ts` file and do the following:
+    - Import `Movie` model:
+
+        ```.js
+        import { Movie } from '../models/movie';
+        ```
+
     - Declare a new function called `getAllMovies` that calls http get() method.
 
         ```.js 
@@ -115,6 +134,11 @@
 
 ### 5.2 Call method containing GET http request 
 1. Open `src/app/app.component.ts` file and do the following:
+    - Import MovieService:
+
+        ```.js
+        import { MovieService } from './services/movie.service';
+        ```
     - Inject `MovieService` as dependency into `AppComponent`.
 
         ```.js
@@ -134,18 +158,40 @@
         }
         ```
 
+### 5.3 Review Changes
+
+1. Start Angular Development Server if not yet started:
+
+    ```.bash
+    npx -p @angular/cli ng serve
+    ```
+    > _Otherwise refresh the browser tab to see updated view._
+
+2. Inspect developer console if using Chrome for any logs. You should see the following geting printed:
+
+    ```.sh
+    (20) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+    ```
+
 ### 5.3 Create a POST http request
 1. Open `src/app/services/movie.service.ts` file and do the following:
-    - Declare a new function called `createMovie` that calls http post() method.
+    - Declare a new function called `createMovie` that takes Movie as a parameter and calls http post() method.
 
         ```.js
-        this.httpClient.post<Movie>('http://localhost:3001/movies', movie).subscribe(res => {
+        createMovie(movie: Movie){
+            this.httpClient.post<Movie>('http://localhost:3001/movies', movie).subscribe(res => {
             console.log('Created movie:', res);
-        });
+            });
+        }
         ```
 
 ### 5.4 Call method containing POST http request 
 1. Open `src/app/app.component.ts` file and do the following:
+    - Import `Movie` model:
+
+        ```.js
+        import { Movie } from './models/movie';
+        ```
     - Inside constructor, create an instance of a movie.
 
         ```.js
@@ -164,20 +210,32 @@
         movieService.createMovie(movie);
         ```
 
-### 5.5 Start The Application
+### 5.5 Review Changes
 
 1. Start Angular Development Server if not yet started:
 
     ```.bash
-    npx -p @angular/cli ng serve  --host 0.0.0.0 
+    npx -p @angular/cli ng serve
     ```
     > _Otherwise refresh the browser tab to see updated view._
+2. Inspect developer console if using Chrome for any logs. You should see the following geting printed:
+    ```.sh
+    Created movie: {id: 'af2c', title: 'Forrest Gump', genre: 'Drama', release_date: '1994', director: 'Robert Zemeckis', …}
+    ```
 
 
 ## 6. Interceptors
 
 ### 6.1 Define an Interceptor
 1. Open `src/app/app.config.ts` file and do the following:
+
+    - Import `withInterceptors`, `HttpEvent`, `HttpHandlerFn`, `HttpRequest` and `Observable`:
+
+        ```.js
+        import { HttpEvent, HttpHandlerFn, HttpRequest, provideHttpClient, withInterceptors } from '@angular/common/http';
+        import { Observable } from 'rxjs';
+        ```
+
     -  Define a `loggingInterceptor` helper function:
 
         ```.js
@@ -201,6 +259,10 @@
 1. Start Angular Development Server if not yet started:
 
     ```.bash
-    npx -p @angular/cli ng serve  --host 0.0.0.0 
+    npx -p @angular/cli ng serve 
     ```
     > _Otherwise refresh the browser tab to see updated view._
+2. Inspect developer console if using Chrome for any logs. You should see the following geting printed:
+    ```.sh
+    Request URL is: http://localhost:3001/movies
+    ```
